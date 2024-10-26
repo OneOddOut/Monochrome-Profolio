@@ -5,13 +5,13 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false); // State to track menu open/close
-  const pathname = usePathname(); // Get the current route
+  const [isOpen, setIsOpen] = useState(false); 
+  const pathname = usePathname(); 
 
-  // Helper function to check if the route is active
+ 
   const isActive = (route: string) => pathname === route;
 
-  // Toggle the menu open/close state
+  
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -20,15 +20,15 @@ export default function Navbar() {
     <nav className="bg-black text-white p-4">
       <div className="container mx-auto flex justify-between items-center">
         
-        {/* Logo or Brand */}
-        <div className="text-2xl font-bold">My Portfolio</div>
+       
+        <div className="text-2xl font-bold">Ruhan's Portfolio</div>
 
-        {/* Hamburger Menu Icon for Mobile Screens */}
+       
         <button 
           className="block md:hidden text-white focus:outline-none"
           onClick={toggleMenu}
         >
-          {/* Hamburger Icon */}
+          
           <svg
             className="w-6 h-6"
             fill="none"
@@ -45,7 +45,7 @@ export default function Navbar() {
           </svg>
         </button>
 
-        {/* Full Navigation Links for Desktop */}
+      
         <ul className="hidden md:flex space-x-8 items-center">
           <li>
             <Link href="/" className={`text-lg font-semibold ${isActive('/') ? 'text-white' : 'text-gray-400 hover:text-gray-200'}`}>
