@@ -15,13 +15,12 @@ interface PhotoCardProps {
 const PhotoCard: React.FC<PhotoCardProps> = ({ imageUrl, location, description }) => {
   return (
     <motion.div
-      className="relative w-full h-96 max-w-xs mx-auto overflow-hidden rounded-lg shadow-lg"  // Thinner width (max-w-xs) and taller height (h-96)
-      whileHover={{ scale: 1.02 }} // Slightly scale the entire card on hover
-    >
-      {/* Image with zoom effect on hover */}
+      className="relative w-full h-96 max-w-xs mx-auto overflow-hidden rounded-lg shadow-lg" 
+      whileHover={{ scale: 1.02 }} 
+      
       <motion.div
         className="relative w-full h-full"
-        whileHover={{ scale: 1.1 }} // Zoom in the image on hover
+        whileHover={{ scale: 1.1 }} 
         transition={{ duration: 0.5 }}
       >
         <Image
@@ -33,11 +32,11 @@ const PhotoCard: React.FC<PhotoCardProps> = ({ imageUrl, location, description }
         />
       </motion.div>
 
-      {/* Overlay with location and description */}
+     
       <motion.div
         className="absolute inset-0 bg-black bg-opacity-50 p-4 flex flex-col justify-end"
-        initial={{ opacity: 0, y: 50 }} // Start with overlay hidden and below
-        whileHover={{ opacity: 1, y: 0 }} // Show overlay and slide up on hover
+        initial={{ opacity: 0, y: 50 }} 
+        whileHover={{ opacity: 1, y: 0 }} 
         transition={{ duration: 0.5 }}
       >
         <div className="flex items-center text-white space-x-2">
