@@ -7,7 +7,7 @@ export default function Footer() {
   useEffect(() => {
     // Dynamically inject the hidden secure text into the document
     const secureText = document.createElement('span');
-    secureText.textContent = 'Ruhan Pacolli Project'; // Your hidden secure message
+    secureText.textContent = 'https://ruhanpacolli.online Project'; // Your hidden secure message
     
     // Apply styles to make it hidden and unselectable
     secureText.style.position = 'absolute';
