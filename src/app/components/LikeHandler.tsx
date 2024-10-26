@@ -10,7 +10,6 @@ export default function LikeHandler() {
   const [error, setError] = useState<string | null>(null);
   const [liked, setLiked] = useState(false);  // Track whether the heart has been liked
 
-  // On component mount, check if the user has already liked the post
   useEffect(() => {
     const fetchLikes = async () => {
       try {
@@ -20,14 +19,14 @@ export default function LikeHandler() {
         }
         const data = await response.json();
         setLikeCount(data.likeCount);
-      } catch (err) {
+      } catch (error) {
+        console.error('Error loading like count:', error);
         setError('Unable to load like count');
       } finally {
         setLoading(false);
       }
     };
 
-    // Check localStorage to see if the user has already liked
     const isLiked = localStorage.getItem('liked') === 'true';
     setLiked(isLiked);
 
@@ -35,21 +34,21 @@ export default function LikeHandler() {
   }, []);
 
   const handleLike = async () => {
-    // Prevent liking again if already liked
     if (liked) return;
 
     try {
-      setLiked(true);  // Set the heart as liked
-      localStorage.setItem('liked', 'true');  // Store the liked state in localStorage
+      setLiked(true);
+      localStorage.setItem('liked', 'true');
 
-      const response = await fetch('/api/POST/like', { method: 'POST' });  // Post to POST API
+      const response = await fetch('/api/POST/like', { method: 'POST' });
       if (!response.ok) {
         throw new Error(`Failed to send like. Status: ${response.status}`);
       }
 
       const data = await response.json();
       setLikeCount(data.likeCount);
-    } catch (err) {
+    } catch (error) {
+      console.error('Error updating likes:', error);
       setError('Unable to update likes');
     }
   };

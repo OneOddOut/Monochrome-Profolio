@@ -1,15 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaBriefcase, FaGraduationCap } from 'react-icons/fa';
+import { FaBriefcase, FaGraduationCap, FaDownload } from 'react-icons/fa';
 import TechStack from '../components/TechStack'; 
 
 // Sample data for Experience
 const experienceData = [
   {
     title: "No Data",
-    company: "No Datat",
+    company: "No Data",
     duration: "No Data",
     details: [
       "No Data Found"
@@ -17,16 +17,48 @@ const experienceData = [
   }
 ];
 
-// Updated education data for Don Bosko (Start and End Date)
+// Updated education data
 const educationData = [
   {
     institution: "Data not found",
-    duration: "Data was found"  // Start at age 5 in 2014, finished in 2024 at age 15
+    duration: "No Data"
   },
 ];
 
 export default function Resume() {
-  const [activeSection, setActiveSection] = useState('experience'); // Track which section is active
+  const [activeSection, setActiveSection] = useState('experience');
+  const [resumeInfo, setResumeInfo] = useState<{ downloadAllowed: boolean, fileName: string } | null>(null);
+  const [resumeLink, setResumeLink] = useState<string | null>(null);
+
+  // Fetch resume info from general.json
+  useEffect(() => {
+    const fetchResumeInfo = async () => {
+      try {
+        const res = await fetch('/assets/data/general.json');
+        if (!res.ok) throw new Error('Failed to fetch general.json');
+        const data = await res.json();
+        const { downloadAllowed, fileName } = data.resume;
+
+        if (downloadAllowed) {
+          const validExtensions = ['.pdf', '.docx', '.png', '.jpg'];
+          let finalFileName = fileName;
+
+          // Check if filename has a file extension
+          if (!validExtensions.some(ext => fileName.toLowerCase().endsWith(ext))) {
+            finalFileName += '.pdf'; // Default to .pdf if no extension is specified
+          }
+
+          setResumeLink(`/assets/data/${finalFileName}`);
+        }
+
+        setResumeInfo({ downloadAllowed, fileName });
+      } catch (error) {
+        console.error('Error fetching general.json:', error);
+      }
+    };
+
+    fetchResumeInfo();
+  }, []);
 
   return (
     <section className="bg-black text-white min-h-screen p-8 flex flex-col items-center justify-center">
@@ -41,7 +73,23 @@ export default function Resume() {
           Resume
         </motion.h1>
 
-        {/* Small Navigation Bar */}
+        {/* Resume Download Section */}
+        <div className="mb-8 text-center">
+          {resumeInfo?.downloadAllowed && resumeLink ? (
+            <a
+              href={resumeLink}
+              download
+              className="inline-flex items-center px-6 py-3 bg-white text-black font-semibold rounded-md shadow hover:bg-gray-300 transition-colors"
+            >
+              <FaDownload className="mr-2" />
+              Download Resume
+            </a>
+          ) : (
+            <p className="text-gray-400">No resume available for download. Please check back soon!</p>
+          )}
+        </div>
+
+        {/* Navigation Bar */}
         <nav className="mb-8 flex justify-center space-x-4">
           <button
             className={`px-6 py-2 rounded-lg text-lg font-semibold transition-all ${activeSection === 'experience' ? 'bg-white text-black' : 'bg-gray-800 text-gray-500 hover:bg-gray-700 hover:text-gray-200'}`}
@@ -57,9 +105,8 @@ export default function Resume() {
           </button>
         </nav>
 
-        {/* Timeline */}
+        {/* Timeline Section */}
         <div className="relative border-l border-gray-600">
-          {/* Show Experience or Education based on activeSection */}
           {activeSection === 'experience' ? (
             <>
               <h2 className="text-2xl font-semibold mb-6 text-center">Experience</h2>

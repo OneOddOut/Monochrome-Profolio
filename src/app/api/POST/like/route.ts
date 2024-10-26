@@ -1,5 +1,3 @@
-// src/app/api/POST/like/route.ts
-
 import { NextResponse } from 'next/server';
 import { sql } from '@vercel/postgres';
 
@@ -15,7 +13,11 @@ export async function POST() {
 
     // Return the updated like count
     return NextResponse.json({ likeCount: result.rows[0].like_count });
-  } catch (error: any) {
-    return NextResponse.json({ message: 'Failed to update likes', error: error.message }, { status: 500 });
+  } catch (error) {
+    // Avoid using 'any' and cast error to 'Error'
+    return NextResponse.json(
+      { message: 'Failed to update likes', error: (error as Error).message },
+      { status: 500 }
+    );
   }
 }

@@ -1,12 +1,26 @@
+'use client';
+
 import emailjs from 'emailjs-com';
 
 export const handleSubmit = async (formData: { name: string; email: string; message: string }) => {
-  const serviceID = 'service_95pdnds';   // Your EmailJS Service ID
-  const templateID = 'template_fn7xz4q'; // Replace with your EmailJS Template ID for owner notification
-  const userID = 'Oc4_X4NlO1Aq61fQW';    // Replace with your EmailJS User ID
+  // Fetch email configuration from general.json
+  const response = await fetch('/assets/data/general.json');
+  const { emailJS } = await response.json();
+
+  const { serviceID, templateID, userID, toEmail } = emailJS;
+
+  // Check for missing configuration and log detailed messages
+  if (!serviceID) console.error("Service ID is missing in general.json.");
+  if (!templateID) console.error("Template ID is missing in general.json.");
+  if (!userID) console.error("User ID is missing in general.json.");
+  if (!toEmail) console.error("Recipient email is missing in general.json.");
+
+  // Stop execution if any configuration variable is missing
+  if (!serviceID || !templateID || !userID || !toEmail) {
+    return;
+  }
 
   try {
-    // Send email to the owner
     await emailjs.send(
       serviceID,
       templateID,
@@ -14,14 +28,13 @@ export const handleSubmit = async (formData: { name: string; email: string; mess
         name: formData.name,
         email: formData.email,
         message: formData.message,
-        to_email: 'pacolliruhan844@gmail.com', // Your email address
+        to_email: toEmail,
       },
       userID
     );
-
-    console.log('Email sent to the owner');
+    console.log('Email sent successfully');
   } catch (error) {
-    console.error('Failed to send email to the owner:', error);
+    console.error('Failed to send email:', error);
     throw error;
   }
 };

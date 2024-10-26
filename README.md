@@ -1,17 +1,38 @@
+Here's the revised README that clarifies database setup through Vercel's query editor and omits instructions for setting EmailJS environment variables in Vercel.
+
+---
+
 # Profilio - Personal Portfolio
 
-**Live Demo**: [ruhanpacolli.online](https://ruhanpacolli.online)
+**Live Demo**: [your-portfolio-link.com](https://your-portfolio-link.com)
 
 ## Overview
 
-**Profilio** is a sleek, modern portfolio designed to showcase personal projects, skills, and experience in a professional and visually appealing manner. Built with **Next.js** and **TypeScript**, the portfolio is fully responsive and uses **Tailwind CSS** for styling, and **Framer Motion** for animations.
+**Profilio** is a customizable personal portfolio built with **Next.js** and **TypeScript**, designed to showcase projects, skills, and experiences in a visually engaging and responsive way. With **Framer Motion** animations and **Tailwind CSS** styling, the site offers a smooth user experience.
+
+This portfolio is easily customizable by modifying the centralized `general.json` file, which holds key personal information like name, location, languages spoken, resume details, social media links, and email configurations for the contact form.
 
 ### Portfolio Sections
 
 - **Home**: Intro with rotating roles like "Software Developer" and "Tech Enthusiast."
-- **About Me**: Bio section including tech stack, languages, location, and social links.
-- **Projects**: Displays personal projects with descriptions, links, and technologies used.
+- **About Me**: Bio section with tech stack, location, languages, and social links.
+- **Projects**: Displays personal projects with descriptions, technologies used, and links.
+- **Resume**: Downloadable resume feature and timelines for experience and education.
 - **Contact**: Contact form integrated with EmailJS.
+
+---
+
+## Key Features
+
+### New in Version 1.1 Beta
+
+1. **Like Counter**: A like button that allows users to interact with the page.
+2. **Easily Editable Content**: Personal data in `general.json` for quick updates.
+3. **Location and Languages Section**: Displays city, country, and languages spoken.
+4. **Resume Download**: Option to allow or disallow downloading a resume, controlled in `general.json`.
+5. **Social Media Links**: Configurable links through `general.json`.
+6. **Enhanced Animations**: Framer Motion adds smooth transitions.
+7. **Centralized EmailJS Configuration**: EmailJS settings stored directly in `general.json`.
 
 ---
 
@@ -19,95 +40,189 @@
 
 ### Prerequisites
 
-To run this project, you’ll need the following installed on your local machine:
-
 - **Node.js** (v18.x or higher)
 - **npm** (v7.x or higher)
 
 ### Installation
 
-To set up the project locally, follow these steps:
-
-1. Clone the repository:
-   
+1. **Clone the repository**:
    ```bash
-   git clone https://github.com/Ruhanpaco/my-profilio.git
+   git clone https://github.com/your-username/your-portfolio.git
    ```
 
-2. Navigate to the project folder:
-   
+2. **Navigate to the project folder**:
    ```bash
-   cd my-profilio
+   cd your-portfolio
    ```
 
-3. Install the dependencies:
-
+3. **Install dependencies**:
    ```bash
    npm install
    ```
 
-4. Run the project:
-
+4. **Run the project**:
    ```bash
    npm run dev
    ```
 
-5. Visit `http://localhost:3000` to see the project in action.
+5. **Access the application**:
+   Go to `http://localhost:3000` in your browser.
 
 ---
 
-## What's New in Version 1.1 Beta
+## Customization with `general.json`
 
-### New Features and Changes:
+The `general.json` file centralizes your personal information. Here’s a guide on how each section works:
 
-- **Location Display**: Your city and country are now shown in the About section, along with a location icon.
-- **Language Section**: A dynamic "Languages I Speak" section has been added below the location.
-- **Like Feature**: A like counter with an animated heart icon has been added to enhance engagement on the site.
-- **General Information in JSON**: A `general.json` file stores all critical personal information (name, location, social links) for easy customization and future updates.
-- **Refined Animations**: Improved animations using Framer Motion across different sections for smoother transitions.
-- **Footer**: A new footer added with a hidden copyright message for security.
+### `Information`
+
+Define personal details like name, email, country, city, and phone number.
+
+```json
+"Information": {
+  "firstName": "Your First Name",
+  "lastName": "Your Last Name",
+  "email": "your-email@example.com",
+  "country": "Your Country",
+  "city": "Your City",
+  "phoneNumber": "+123456789"
+}
+```
+
+### `socialMedia`
+
+Add or edit social media links. Leave fields empty if you don't want them displayed.
+
+```json
+"socialMedia": {
+  "github": "https://github.com/your-username",
+  "linkedin": "",
+  "twitter": "",
+  "instagram": "https://instagram.com/your-username",
+  "facebook": "",
+  "youtube": ""
+}
+```
+
+### `languagesSpeak`
+
+Define the languages you speak with flags and labels.
+
+```json
+"languagesSpeak": [
+  {
+    "language": "English",
+    "flag": "🇺🇸"
+  },
+  {
+    "language": "Spanish",
+    "flag": "🇪🇸"
+  }
+]
+```
+
+### `aboutMe`
+
+Edit your bio paragraphs and homepage description.
+
+```json
+"aboutMe": {
+  "paragraphs": [
+    "Hi, I’m [Your Name], a software developer with a passion for building scalable web applications...",
+    "I have experience with front-end and back-end technologies...",
+    "In my free time, I enjoy working on open-source projects and contributing to the developer community."
+  ],
+  "homepageDescription": "Welcome to my personal portfolio..."
+}
+```
+
+### `resume`
+
+Control the resume download feature and specify the file name. Set `downloadAllowed` to `true` to enable download, and specify the resume file name in `fileName`.
+
+```json
+"resume": {
+  "downloadAllowed": true,
+  "fileName": "Your_Name_Resume.pdf"
+}
+```
+
+If `downloadAllowed` is set to `false`, a message saying “No resume available for download” will be displayed.
+
+### `emailJS`
+
+Configure EmailJS directly within `general.json`. This integration handles contact form submissions.
+
+```json
+"emailJS": {
+  "serviceID": "your_service_id",
+  "templateID": "your_template_id",
+  "userID": "your_user_id",
+  "toEmail": "your-email@example.com"
+}
+```
 
 ---
 
-## Technologies Used
+## Database Setup on Vercel
 
-- **Next.js**: Server-side rendering and static site generation.
-- **TypeScript**: Type safety for scalable development.
-- **Tailwind CSS**: Responsive UI and styling.
-- **Framer Motion**: Animations and transitions.
-- **EmailJS**: Email notifications for the contact form.
+To set up a PostgreSQL database for features like the **Like Counter**:
+
+1. **Create Database**:  
+   In Vercel, go to **Project > Settings > Storage** and add a PostgreSQL database (using Neon or Supabase as a provider).
+
+2. **Go to the Query Editor**:  
+   After the database is created, open the **Query Editor** from your database dashboard.
+
+3. **Create the Table**:  
+   Run the following SQL command in the Query Editor to create a `likes` table:
+
+   ```sql
+   CREATE TABLE likes (
+     id SERIAL PRIMARY KEY,
+     like_count INT DEFAULT 0
+   );
+   ```
+
+4. **Seed Initial Data (Optional)**:  
+   Insert a row in the `likes` table to initialize the counter.
+
+   ```sql
+   INSERT INTO likes (like_count) VALUES (0);
+   ```
+
+Vercel will provide connection strings such as `POSTGRES_URL` and `POSTGRES_PRISMA_URL` after setup. These are used within the code to connect your app to the database, and vercel will automaticly create envirment varible for you.
 
 ---
 
-## Email Integration with EmailJS
+## Deployment on Vercel
 
-### Setting Up EmailJS
+To deploy the portfolio on Vercel:
 
-1. Sign up on [EmailJS](https://www.emailjs.com/) and connect your email service.
-2. Create an email template with placeholders like `{{name}}`, `{{email}}`, and `{{message}}`.
-3. Add your EmailJS credentials (`serviceID`, `templateID`, `userID`) in the environment variables.
+1. **Connect Repository**:  
+   Go to [Vercel](https://vercel.com/) and connect your GitHub repository.
+
+2. **Deploy**:  
+   Deploy directly from Vercel’s dashboard by selecting your project and deploying.
 
 ---
 
-## Deployment
+## Key Updates and Features in Version 1.1 Beta
 
-1. **Vercel**: Easily deploy the project on Vercel by connecting your GitHub repository.
-2. **Environment Variables**: Add your EmailJS credentials as environment variables for security.
+| Feature                    | Description |
+|----------------------------|-------------|
+| **Like Counter**           | Allows users to interact by liking the page. |
+| **Easily Editable Content**| Centralized information in `general.json`. |
+| **Resume Download Option** | Toggle the availability of a resume download. |
+| **Location and Languages** | Display user's location and spoken languages. |
+| **EmailJS Integration**    | Configure email service to handle contact form submissions. |
+| **Animated Experience**    | Enhanced animations using Framer Motion. |
+| **Social Media Links**     | Add/remove social media links via JSON. |
 
 ---
 
 ## Contact Information
 
-For any feedback or collaboration inquiries, feel free to reach out through the contact form or via email at **pacolliruhan844@gmail.com**.
+For feedback or collaboration inquiries, reach out via the contact form or email at **pacolliruhan844@gmail.com*.
 
-Explore the live portfolio: [ruhanpacolli.online](https://ruhanpacolli.online).
-```
-
-### Key Changes from Version 1.0 to 1.1 Beta:
-
-1. **Location Section**: Added location details under the profile picture with an icon.
-2. **Languages I Speak**: Added a section dynamically showing the languages you speak.
-3. **Like Feature**: Added a like button with animation to increase interaction.
-4. **general.json File**: Now stores all personal details, making it easy to update information such as name, social links, and bio.
-5. **Footer**: Added a footer with hidden copyright information.
-6. **Refined Animations**: Improved transitions using **Framer Motion** for smoother user interactions.
+Explore the live portfolio: [your-portfolio-link.com](https://ruhanpacolli.online).

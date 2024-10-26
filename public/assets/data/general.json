@@ -32,6 +32,17 @@
         "In my free time, I enjoy contributing to open-source projects and working on personal development projects. My goal is to make a meaningful impact in the software industry by developing innovative applications."
       ],
       "homepageDescription": "Welcome to my personal portfolio. Here, you’ll find a collection of my work, including projects that demonstrate my technical abilities and my passion for clean, efficient code. Explore the site to learn more about me and my journey as a developer."
+    },
+    "resume": {
+      "downloadAllowed": false,
+      "fileName": "Ruhan_Pacolli_Resume.pdf"
+    },
+
+    "emailJS": {
+      "serviceID": "service_95pdnds",
+      "templateID": "template_fn7xz4q",
+      "userID": "Oc4_X4NlO1Aq61fQW",
+      "toEmail": "pacolliruhan844@gmail.com"
     }
   }
   

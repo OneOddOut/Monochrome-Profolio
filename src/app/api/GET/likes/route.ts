@@ -1,5 +1,3 @@
-// src/app/api/GET/likes/route.ts
-
 import { NextResponse } from 'next/server';
 import { sql } from '@vercel/postgres';
 
@@ -15,7 +13,10 @@ export async function GET() {
 
     // Return the like count
     return NextResponse.json({ likeCount: result.rows[0].like_count });
-  } catch (error: any) {
-    return NextResponse.json({ message: 'Failed to retrieve likes', error: error.message }, { status: 500 });
+  } catch (error) {
+    return NextResponse.json(
+      { message: 'Failed to retrieve likes', error: (error as Error).message },
+      { status: 500 }
+    );
   }
 }
