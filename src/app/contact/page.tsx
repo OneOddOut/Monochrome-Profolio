@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { handleSubmit } from '../components/handleSubmit'; // Import the standalone handleSubmit function
 
 export default function ContactPage() {
@@ -108,7 +108,7 @@ export default function ContactPage() {
               If you&apos;d prefer to email me directly, you can reach me at:
             </p>
             <p className="text-lg font-semibold text-white mb-2">
-              {process.env.toEmail || 'pacolliruhan844@gmail.com'}
+              {process.env.toEmail || 'your-email@example.com'}
             </p>
             <p className="text-lg text-gray-400 mb-6">
               I typically respond within 24-48 hours.

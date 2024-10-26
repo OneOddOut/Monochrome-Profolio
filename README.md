@@ -1,4 +1,4 @@
-Here's the revised README that clarifies database setup through Vercel's query editor and omits instructions for setting EmailJS environment variables in Vercel.
+Here's the updated README file, incorporating all the requested information and clarifications. This README includes a step-by-step guide for setting up the database on Vercel, as well as details about the new features and customization options.
 
 ---
 
@@ -14,11 +14,11 @@ This portfolio is easily customizable by modifying the centralized `general.json
 
 ### Portfolio Sections
 
-- **Home**: Intro with rotating roles like "Software Developer" and "Tech Enthusiast."
-- **About Me**: Bio section with tech stack, location, languages, and social links.
-- **Projects**: Displays personal projects with descriptions, technologies used, and links.
-- **Resume**: Downloadable resume feature and timelines for experience and education.
-- **Contact**: Contact form integrated with EmailJS.
+- **Home**: An engaging introduction with rotating roles (e.g., "Software Developer", "Tech Enthusiast").
+- **About Me**: A section that includes a bio, tech stack, location, languages spoken, and social media links.
+- **Projects**: Displays projects with descriptions, tech stack used, and links to GitHub and live demos.
+- **Resume**: A resume download feature and timelines for experience and education.
+- **Contact**: A contact form integrated with EmailJS to send messages directly to your email.
 
 ---
 
@@ -33,6 +33,7 @@ This portfolio is easily customizable by modifying the centralized `general.json
 5. **Social Media Links**: Configurable links through `general.json`.
 6. **Enhanced Animations**: Framer Motion adds smooth transitions.
 7. **Centralized EmailJS Configuration**: EmailJS settings stored directly in `general.json`.
+8. **Photo Gallery**: Showcase images with a grid layout for better visual appeal.
 
 ---
 
@@ -191,7 +192,7 @@ To set up a PostgreSQL database for features like the **Like Counter**:
    INSERT INTO likes (like_count) VALUES (0);
    ```
 
-Vercel will provide connection strings such as `POSTGRES_URL` and `POSTGRES_PRISMA_URL` after setup. These are used within the code to connect your app to the database, and vercel will automaticly create envirment varible for you.
+Vercel will provide connection strings such as `POSTGRES_URL` and `POSTGRES_PRISMA_URL` after setup. These are used within the code to connect your app to the database, and Vercel will automatically create environment variables for you.
 
 ---
 
@@ -218,11 +219,12 @@ To deploy the portfolio on Vercel:
 | **EmailJS Integration**    | Configure email service to handle contact form submissions. |
 | **Animated Experience**    | Enhanced animations using Framer Motion. |
 | **Social Media Links**     | Add/remove social media links via JSON. |
+| **Photo Gallery**          | Showcase your images with a beautiful gallery layout were you been with location name, and description. |
 
 ---
 
 ## Contact Information
 
-For feedback or collaboration inquiries, reach out via the contact form or email at **pacolliruhan844@gmail.com*.
+For feedback or collaboration inquiries, reach out via the contact form or email at **your-email@example.com**.
 
-Explore the live portfolio: [your-portfolio-link.com](https://ruhanpacolli.online).
+Explore the live portfolio: [your-portfolio-link.com](https://your-portfolio-link.com).
