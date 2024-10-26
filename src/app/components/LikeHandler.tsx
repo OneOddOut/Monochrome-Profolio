@@ -1,19 +1,19 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { FaHeart } from 'react-icons/fa';  // Import the heart icon from react-icons
-import { motion } from 'framer-motion';    // Import Framer Motion for animations
+import { FaHeart } from 'react-icons/fa';  
+import { motion } from 'framer-motion';    
 
 export default function LikeHandler() {
   const [likeCount, setLikeCount] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [liked, setLiked] = useState(false);  // Track whether the heart has been liked
+  const [liked, setLiked] = useState(false);  
 
   useEffect(() => {
     const fetchLikes = async () => {
       try {
-        const response = await fetch('/api/GET/likes');  // Fetch from GET API
+        const response = await fetch('/api/GET/likes');  
         if (!response.ok) {
           throw new Error(`Failed to fetch likes. Status: ${response.status}`);
         }
@@ -62,13 +62,13 @@ export default function LikeHandler() {
   }
 
   return (
-    <div className="fixed bottom-4 right-4">  {/* Positioning the badge in the corner */}
+    <div className="fixed bottom-4 right-4">  
       <motion.button
         whileTap={{ scale: 1.2 }}
-        disabled={liked}  // Disable the button if already liked
+        disabled={liked}  
         className={`flex items-center justify-center space-x-2 p-3 border rounded-full border-white bg-black focus:outline-none transition-colors duration-500 ${
           liked ? 'text-red-500' : 'text-white'
-        }`}  // No opacity change when disabled, just the color change
+        }`}  
         onClick={handleLike}
       >
         <FaHeart
