@@ -225,6 +225,6 @@ To deploy the portfolio on Vercel:
 
 ## Contact Information
 
-For feedback or collaboration inquiries, reach out via the contact form or email at **your-email@example.com**.
+For feedback or collaboration inquiries, reach out via Discord: **theoneodd_out**
 
-Explore the live portfolio: [your-portfolio-link.com](https://your-portfolio-link.com).
+Explore the live portfolio: [ruhanpacolli.online](https://ruhanpacolli.online).
