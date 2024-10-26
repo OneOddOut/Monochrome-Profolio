@@ -5,18 +5,18 @@ import { useEffect } from 'react';
 
 export default function Footer() {
   useEffect(() => {
-    // Dynamically inject the hidden secure text into the document
+   
     const secureText = document.createElement('span');
-    secureText.textContent = 'https://ruhanpacolli.online Project'; // Your hidden secure message
+    secureText.textContent = 'https://ruhanpacolli.online Project'; 
     
-    // Apply styles to make it hidden and unselectable
+    
     secureText.style.position = 'absolute';
     secureText.style.opacity = '0';
     secureText.style.pointerEvents = 'none';
     secureText.style.userSelect = 'none';
-    secureText.style.zIndex = '-9999'; // Make it deeply hidden behind any other elements
+    secureText.style.zIndex = '-9999'; 
 
-    // Append it to the body
+    
     document.body.appendChild(secureText);
   }, []);
 
